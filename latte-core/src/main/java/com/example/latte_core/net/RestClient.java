@@ -7,6 +7,7 @@ import com.example.latte_core.net.callback.IFailure;
 import com.example.latte_core.net.callback.IRequest;
 import com.example.latte_core.net.callback.ISuccess;
 import com.example.latte_core.net.callback.RequestCallbacks;
+import com.example.latte_core.net.download.DownloadHandler;
 import com.example.latte_core.ui.LatteLoader;
 import com.example.latte_core.ui.LoaderStyle;
 
@@ -27,6 +28,9 @@ public class RestClient {
     private final String URL;
     private static final WeakHashMap<String,Object> PARAMS = RestCreator.getParams();
     private final IRequest REQUEST;
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
     private final ISuccess SUCCESS;
     private final IError ERROR;
     private final IFailure FAILURE;
@@ -37,6 +41,9 @@ public class RestClient {
 
     public RestClient(String url,
                       Map<String, Object> params,
+                      String downloadDir,
+                      String extension,
+                      String name,
                       IRequest request,
                       ISuccess success,
                       IError error,
@@ -47,6 +54,9 @@ public class RestClient {
                       LoaderStyle loaderStyle) {
         this.URL = url;
         PARAMS.putAll(params);
+        this.DOWNLOAD_DIR = downloadDir;
+        this.EXTENSION = extension;
+        this.NAME = name;
         this.REQUEST = request;
         this.SUCCESS = success;
         this.ERROR = error;
@@ -145,5 +155,10 @@ public class RestClient {
 
     public final void delete(){
         request(HttpMethod.DELETE);
+    }
+
+    public final void download(){
+        new DownloadHandler(URL,PARAMS,REQUEST,DOWNLOAD_DIR,EXTENSION,NAME,SUCCESS,FAILURE,ERROR)
+        .handleDownload();
     }
 }

@@ -1,9 +1,12 @@
 package com.example.latte_core.app;
 
+import android.app.Application;
 import android.content.Context;
 
 import java.util.HashMap;
 import java.util.WeakHashMap;
+
+import static android.provider.Settings.System.getConfiguration;
 
 public final class Latte {
 
@@ -19,4 +22,6 @@ public final class Latte {
     public static Context getApplication(){
         return (Context) getConfigurations().get(ConfigType.APPLICATION_CONTEXT.name());
     }
+
+
 }
