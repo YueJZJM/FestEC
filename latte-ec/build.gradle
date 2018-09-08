@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
-
+//butterknife
+apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion 27
 
@@ -22,9 +23,17 @@ android {
         }
     }
 
+    productFlavors {
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api project(':latte-core')
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 }
