@@ -8,8 +8,6 @@ import com.example.latte_core.app.Latte;
 import com.example.latte_core.net.interceptors.DebugInterceptor;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.Logger;
 
 public class ExampleApp extends Application {
 
