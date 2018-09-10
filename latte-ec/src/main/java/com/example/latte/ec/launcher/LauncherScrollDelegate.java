@@ -1,5 +1,6 @@
 package com.example.latte.ec.launcher;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -8,8 +9,12 @@ import android.widget.AdapterView;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.example.latte.ec.R;
+import com.example.latte_core.app.AccountManager;
+import com.example.latte_core.app.IUserChecker;
 import com.example.latte_core.delegates.LatteDelegate;
+import com.example.latte_core.ui.launcher.ILauncherListener;
 import com.example.latte_core.ui.launcher.LauncherHolderCreator;
+import com.example.latte_core.ui.launcher.OnLauncherFinishTag;
 import com.example.latte_core.ui.launcher.ScrollLauncherTag;
 import com.example.latte_core.util.storeage.LattePreference;
 
@@ -20,6 +25,8 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
     private ConvenientBanner<Integer> mConvenientBanner = null;
     private static final ArrayList<Integer> INTEGERS = new ArrayList<>();
 
+    private ILauncherListener mILauncherListener = null;
+
     private void initBanner(){
         INTEGERS.add(R.mipmap.launcher_01);
         INTEGERS.add(R.mipmap.launcher_02);
@@ -28,10 +35,20 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
         INTEGERS.add(R.mipmap.launcher_05);
         mConvenientBanner
                 .setPages(new LauncherHolderCreator(),INTEGERS)
+                //设置两个点图片作为翻页指示器，即翻页前后的UI样式
                 .setPageIndicator(new int[]{R.drawable.dot_normal,R.drawable.dot_focus})
+                //设置指示器的方向
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(this)
                 .setCanLoop(false);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ILauncherListener){
+            mILauncherListener = (ILauncherListener) activity;
+        }
     }
 
     @Override
@@ -52,6 +69,21 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
         if (position == INTEGERS.size() - 1){
             LattePreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name(),true);
             //检查用户是否登陆
+            AccountManager.checkAccount(new IUserChecker() {
+                @Override
+                public void onSignIn() {
+                    if (mILauncherListener != null){
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
+                    }
+                }
+
+                @Override
+                public void onNoSignIn() {
+                    if (mILauncherListener != null){
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
+                    }
+                }
+            });
         }
     }
 }

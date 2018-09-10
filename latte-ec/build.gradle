@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 //butterknife
 apply plugin: 'com.jakewharton.butterknife'
+//数据库
+apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 27
 

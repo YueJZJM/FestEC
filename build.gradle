@@ -10,6 +10,8 @@ buildscript {
         classpath 'com.android.tools.build:gradle:3.1.4'
         //butterknife
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
+        //数据库
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
 
     }
 }
