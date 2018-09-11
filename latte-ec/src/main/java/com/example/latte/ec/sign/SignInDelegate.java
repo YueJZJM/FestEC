@@ -13,6 +13,8 @@ import com.example.latte.ec.R2;
 import com.example.latte_core.delegates.LatteDelegate;
 import com.example.latte_core.net.RestClient;
 import com.example.latte_core.net.callback.ISuccess;
+import com.example.latte_core.wechat.LatteWeChat;
+import com.example.latte_core.wechat.callbacks.IWeChatSignInCallback;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -45,7 +47,12 @@ public class SignInDelegate extends LatteDelegate {
 
     @OnClick(R2.id.icon_sign_wechat)
     void onClickWeChat(){
-
+        LatteWeChat.getInstance().onSignSuccess(new IWeChatSignInCallback() {
+            @Override
+            public void onSignInSuccess(String userInfo) {
+                
+            }
+        }).signIn();
     }
 
     @OnClick(R2.id.tv_link_sign_up)

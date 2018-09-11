@@ -30,6 +30,8 @@ public class ExampleActivity extends ProxyActivity implements
             actionBar.hide();
         }
 
+        Latte.getConfigurator().withActivity(this);
+
        // Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
