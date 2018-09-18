@@ -5,7 +5,7 @@ import com.example.latte_core.delegates.LatteDelegate;
 
 public class WXPayEntryTemplate extends ProxyActivity {
     @Override
-    public LatteDelegate setRootDelegare() {
+    public LatteDelegate setRootDelegate() {
         return null;
     }
 }

@@ -13,7 +13,7 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 public abstract class ProxyActivity extends SupportActivity {
 
-    public abstract LatteDelegate setRootDelegare();
+    public abstract LatteDelegate setRootDelegate();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public abstract class ProxyActivity extends SupportActivity {
         container.setId(R.id.delegate_container);
         setContentView(container);
         if (savedInstanceState == null){
-            loadRootFragment(R.id.delegate_container,setRootDelegare());
+            loadRootFragment(R.id.delegate_container,setRootDelegate());
         }
     }
 

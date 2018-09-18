@@ -9,5 +9,6 @@ public enum ConfigKeys {
     LOADER_DELAYED,
     WE_CHAT_APP_ID,
     WE_CHAT_APP_SECRET,
-    ACTIVITY
+    ACTIVITY,
+    HANDLER
 }

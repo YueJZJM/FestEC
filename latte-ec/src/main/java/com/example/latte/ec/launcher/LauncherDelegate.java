@@ -37,14 +37,14 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListerer{
 
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerView(){
-        if (mCount < 0){
+       // if (mCount < 0){
             if (mTimer != null){
                 mTimer.cancel();
                 mTimer = null;
                 checkIsShowScroll();
-             //   Toast.makeText(Latte.getApplicationContext(),"")
+               // Toast.makeText(Latte.getApplicationContext(),"dsa",Toast.LENGTH_SHORT).show();
             }
-        }
+      //  }
     }
 
     private void initTimer(){
