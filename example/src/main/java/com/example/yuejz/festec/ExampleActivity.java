@@ -20,6 +20,8 @@ import com.example.latte_core.ui.launcher.OnLauncherFinishTag;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
+import qiu.niorgai.StatusBarCompat;
+
 public class ExampleActivity extends ProxyActivity implements
         ISignListener,ILauncherListener{
 
@@ -32,7 +34,7 @@ public class ExampleActivity extends ProxyActivity implements
         }
 
         Latte.getConfigurator().withActivity(this);
-
+        StatusBarCompat.translucentStatusBar(this,true);
        // Logger.addLogAdapter(new AndroidLogAdapter());
     }
 

@@ -38,7 +38,7 @@ public class Configurator {
 
     public final void configure(){
         initIcons();
-        Logger.addLogAdapter(new AndroidLogAdapter());
+       // Logger.addLogAdapter(new AndroidLogAdapter());
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY.name(),true);
         LATTE_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
     }

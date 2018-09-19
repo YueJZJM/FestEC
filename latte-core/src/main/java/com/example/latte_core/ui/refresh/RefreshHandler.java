@@ -52,7 +52,7 @@ public class RefreshHandler implements
 
     public void firstPage(String url){
         //Toast.makeText(Latte.getApplicationContext(),url,Toast.LENGTH_SHORT).show();
-       // Log.d("url",url);
+        Log.d("url",url);
         BEAN.setDelayout(1000);
         RestClient.builder()
                // .url("http://mock.fulingjie.com/mock/data/index_data.json/")
@@ -61,6 +61,7 @@ public class RefreshHandler implements
                     @Override
                     public void onSuccess(String response) {
                         final JSONObject object = JSON.parseObject(response);
+                        Log.d("response",response);
                         BEAN.setTotal(object.getInteger("total"))
                                 .setPageSize(object.getInteger("page_size"));
                         mAdapter = MultipleRecyclerAdapter.create(CONVERTER.setJsonData(response));
