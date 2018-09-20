@@ -54,7 +54,7 @@ public class TransluncentBehavior extends CoordinatorLayout.Behavior<Toolbar> {
             final float scale =(float) mDistanceY/targetHeight;
             final float alpha = scale * 255;
             child.setBackgroundColor(Color.argb((int) alpha,RGB_VALUE.red(),RGB_VALUE.green(),RGB_VALUE.blue()));
-        }else if (mDistanceY > targetHeight){
+        }else if (mDistanceY > targetHeight){ //滑动的距离大于oolbar高度时，恢复原来的颜色
             child.setBackgroundColor(Color.rgb(RGB_VALUE.red(),RGB_VALUE.green(),RGB_VALUE.blue()));
         }
     }

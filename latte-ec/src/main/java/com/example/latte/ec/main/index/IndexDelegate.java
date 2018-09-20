@@ -45,21 +45,6 @@ public class IndexDelegate extends BottomItemDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mRefreshHandler =  RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
-        RestClient.builder()
-                .url("http://mock.fulingjie.com/mock/api/")
-                .success(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        final IndexDataConverter converter = new IndexDataConverter();
-                        converter.setJsonData(response);
-                        final ArrayList<MultipleItemEntity> list = converter.convert();
-                        final String image = list.get(1).getField(MultipleFields.IMAGE_URL);
-                        Toast.makeText(getContext(),image,Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .build()
-                .get();
-
     }
 
     private void initRefreshLayout(){
