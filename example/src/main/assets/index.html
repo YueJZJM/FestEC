@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>发现详情</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  </head>
+</head>
+<body>
+<h1>测试</h1>
+
+<a href="second.html">跳转页面</a>
+
+<button id="text">测试事件</button>
+
+<script type="text/javascript">
+
+  function nativeCall() {
+      alert('原生调用了');
+  }
+
+    document.getElementById('text').onclick = function () {
+
+        var command = {
+            'action': 'test'
+        };
+        latte.event(JSON.stringify(command));
+    };
+</script>
+</body>
+</html>

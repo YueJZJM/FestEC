@@ -5,6 +5,7 @@ import android.app.Application;
 import com.example.latte.ec.database.DataBaseManager;
 import com.example.latte.ec.iocn.FontEcModule;
 import com.example.latte_core.app.Latte;
+import com.example.latte_core.delegates.web.event.TestEvent;
 import com.example.latte_core.net.interceptors.DebugInterceptor;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
@@ -17,11 +18,13 @@ public class ExampleApp extends Application {
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
-             //   .withApiHost("http://oxjde2kpq.bkt.clouddn.com/")
+                //   .withApiHost("http://oxjde2kpq.bkt.clouddn.com/")
                 .withApiHost("http://mock.fulingjie.com/mock/data/")
-                .withInterceptor(new DebugInterceptor("index",R.raw.test))
-          //      .withWeChatAppId("")
-             //   .withWeChatAppSecret("")
+                .withInterceptor(new DebugInterceptor("index", R.raw.test))
+                .withWebEvent("test", new TestEvent())
+               // .withWebEvent("action", new TestEvent())
+                //      .withWeChatAppId("")
+                //   .withWeChatAppSecret("")
                 .configure();
 
         DataBaseManager.getInstance().init(this);
