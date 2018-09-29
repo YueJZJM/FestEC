@@ -7,7 +7,7 @@ import com.example.latte_core.delegates.web.event.Event;
 import com.example.latte_core.delegates.web.event.EventManager;
 
 /**
- * 与原生交互
+ * 与H5交互
  */
 public final class LatteWebInterface {
     private final WebDelegate DELEGATE;

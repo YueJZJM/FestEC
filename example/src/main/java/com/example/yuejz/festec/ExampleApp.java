@@ -7,6 +7,7 @@ import com.example.latte.ec.iocn.FontEcModule;
 import com.example.latte_core.app.Latte;
 import com.example.latte_core.delegates.web.event.TestEvent;
 import com.example.latte_core.net.interceptors.DebugInterceptor;
+import com.example.latte_core.net.rx.AddCookieInterceptor;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
@@ -21,10 +22,14 @@ public class ExampleApp extends Application {
                 //   .withApiHost("http://oxjde2kpq.bkt.clouddn.com/")
                 .withApiHost("http://mock.fulingjie.com/mock/data/")
                 .withInterceptor(new DebugInterceptor("index", R.raw.test))
+                .withJavascriptInterface("latte")
                 .withWebEvent("test", new TestEvent())
-               // .withWebEvent("action", new TestEvent())
+                // .withWebEvent("action", new TestEvent())
                 //      .withWeChatAppId("")
                 //   .withWeChatAppSecret("")
+                .withWebHost("https://www.baidu.com/")
+                //添加cookie的拦截器
+                .withInterceptor(new AddCookieInterceptor())
                 .configure();
 
         DataBaseManager.getInstance().init(this);
