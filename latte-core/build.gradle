@@ -38,7 +38,8 @@ dependencies {
 
     //Android Supper包
     api 'com.android.support:appcompat-v7:27.1.1'
-    api 'com.android.support:support-v4:27.1.1'
+   // implementation 'com.android.support:appcompat-v7:+'
+    api 'com.android.support:support-v4:27.1.0'
     api 'com.android.support.constraint:constraint-layout:1.1.3'
     api 'com.android.support:design:27.1.1'
 

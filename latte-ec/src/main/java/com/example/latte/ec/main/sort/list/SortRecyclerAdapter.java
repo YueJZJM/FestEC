@@ -68,7 +68,7 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
                 if (!isClicked){
                     line.setVisibility(View.INVISIBLE);
                     name.setTextColor(ContextCompat.getColor(mContext,R.color.we_chat_black));
-                    itemView.setBackgroundColor(ContextCompat.getColor(mContext,R.color.itme_backgroud));
+                    itemView.setBackgroundColor(ContextCompat.getColor(mContext,R.color.item_background));
                 }else {
                     line.setVisibility(View.VISIBLE);
                     name.setTextColor(ContextCompat.getColor(mContext,R.color.app_main));
