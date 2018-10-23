@@ -11,19 +11,16 @@ import com.example.latte.ec.launcher.LauncherScrollDelegate;
 import com.example.latte.ec.main.EcBottomDelegate;
 import com.example.latte.ec.sign.ISignListener;
 import com.example.latte.ec.sign.SignInDelegate;
-import com.example.latte.ec.sign.SignUpDelegate;
 import com.example.latte_core.activities.ProxyActivity;
 import com.example.latte_core.app.Latte;
 import com.example.latte_core.delegates.LatteDelegate;
 import com.example.latte_core.ui.launcher.ILauncherListener;
 import com.example.latte_core.ui.launcher.OnLauncherFinishTag;
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.Logger;
 
 import qiu.niorgai.StatusBarCompat;
 
 public class ExampleActivity extends ProxyActivity implements
-        ISignListener,ILauncherListener{
+        ISignListener,ILauncherListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

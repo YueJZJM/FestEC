@@ -3,7 +3,6 @@ package com.example.latte_core.ui.refresh;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -24,7 +23,7 @@ public class RefreshHandler implements
     private MultipleRecyclerAdapter mAdapter = null;
     private final DataConverter CONVERTER;
 
-    private RefreshHandler(SwipeRefreshLayout swipeRefreshLayout,RecyclerView recyclerView,DataConverter converter,PagingBean bean) {
+    private RefreshHandler(SwipeRefreshLayout swipeRefreshLayout, RecyclerView recyclerView, DataConverter converter, PagingBean bean) {
         this.REFRESH_LAYOUT = swipeRefreshLayout;
         this.RECYCLERVIEW = recyclerView;
         this.CONVERTER = converter;

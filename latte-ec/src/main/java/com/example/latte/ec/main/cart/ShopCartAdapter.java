@@ -11,7 +11,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.latte.ec.R;
 import com.example.latte_core.app.Latte;
-import com.example.latte_core.ui.recycler.ItemType;
+import com.example.latte_core.net.RestClient;
+import com.example.latte_core.net.callback.ISuccess;
 import com.example.latte_core.ui.recycler.MultipleFields;
 import com.example.latte_core.ui.recycler.MultipleItemEntity;
 import com.example.latte_core.ui.recycler.MultipleRecyclerAdapter;
@@ -23,6 +24,8 @@ import java.util.List;
 public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
     private boolean mIsSelectAll = false;
+    private ICartItemListener mCartItemListerer = null;
+    private double mTotalPrice = 0.00;
 
     private static final RequestOptions OPTIONS = new RequestOptions()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -31,12 +34,28 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
     protected ShopCartAdapter(List<MultipleItemEntity> data) {
         super(data);
+
+        //初始化总价
+        for (MultipleItemEntity entity : data) {
+            final double price = entity.getField(ShopCartItemFields.PRICE);
+            final int count = entity.getField(ShopCartItemFields.COUNT);
+            final double total = price * count;
+            mTotalPrice += total;
+        }
         //添加购物车item布局
         addItemType(ShopCartItemType.SHOP_CART_ITEM, R.layout.item_shop_cart);
     }
 
     public void setIsSelectedAll(boolean isSelectedAll) {
         this.mIsSelectAll = isSelectedAll;
+    }
+
+    public void setCartItemListerer(ICartItemListener mCartItemListener) {
+        this.mCartItemListerer = mCartItemListener;
+    }
+
+    public double getTotalPrice() {
+        return mTotalPrice;
     }
 
     @Override
@@ -92,6 +111,62 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                             iconIsSelected.setTextColor
                                     (ContextCompat.getColor(Latte.getApplicationContext(), R.color.app_main));
                             entity.setField(ShopCartItemFields.IS_SELECTED, true);
+                        }
+                    }
+                });
+                //添加加减事件
+                iconMinus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int currentCount = entity.getField(ShopCartItemFields.COUNT);
+                        if (Integer.valueOf(tvCount.getText().toString()) > 1) {
+                            RestClient.builder()
+                                    .url("http://mock.fulingjie.com/mock/data/add_shop_cart.json")
+                                    .loader(mContext)
+                                    .params("count",currentCount)
+                                    .success(new ISuccess() {
+                                        @Override
+                                        public void onSuccess(String response) {
+                                            int countNum = Integer.parseInt(tvCount.getText().toString());
+                                            countNum--;
+                                            tvCount.setText(String.valueOf(countNum));
+                                            if (mCartItemListerer != null) {
+                                                mTotalPrice = mTotalPrice - price;
+                                                final double itemTotal = countNum * price;
+                                                mCartItemListerer.onItemClick(itemTotal);
+                                            }
+                                        }
+                                    })
+                                    .build()
+                                    .post();
+                        }
+                    }
+                });
+
+                iconPlus.setOnClickListener(new View.OnClickListener() {
+                    final int currentCount = entity.getField(ShopCartItemFields.COUNT);
+                    @Override
+                    public void onClick(View v) {
+                        if (Integer.valueOf(tvCount.getText().toString()) > 1) {
+                            RestClient.builder()
+                                    .url("http://mock.fulingjie.com/mock/data/add_shop_cart.json")
+                                    .loader(mContext)
+                                    .params("count",currentCount)
+                                    .success(new ISuccess() {
+                                        @Override
+                                        public void onSuccess(String response) {
+                                            int countNum = Integer.parseInt(tvCount.getText().toString());
+                                            countNum++;
+                                            tvCount.setText(String.valueOf(countNum));
+                                            if (mCartItemListerer != null) {
+                                                mTotalPrice = mTotalPrice + price;
+                                                final double itemTotal = countNum * price;
+                                                mCartItemListerer.onItemClick(itemTotal);
+                                            }
+                                        }
+                                    })
+                                    .build()
+                                    .post();
                         }
                     }
                 });

@@ -1,9 +1,5 @@
 package com.example.latte_core.ui.banner;
 
-import android.support.v4.app.NavUtils;
-import android.support.v7.widget.AppCompatImageView;
-import android.widget.AdapterView;
-
 import com.ToxicBakery.viewpager.transforms.DefaultTransformer;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;

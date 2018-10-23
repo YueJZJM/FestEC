@@ -15,12 +15,7 @@ import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
 import com.example.latte.ec.main.EcBottomDelegate;
 import com.example.latte_core.delegates.bottom.BottomItemDelegate;
-import com.example.latte_core.net.RestClient;
-import com.example.latte_core.net.callback.ISuccess;
 import com.example.latte_core.ui.recycler.BaseDecoration;
-import com.example.latte_core.ui.recycler.DataConverter;
-import com.example.latte_core.ui.recycler.MultipleFields;
-import com.example.latte_core.ui.recycler.MultipleItemEntity;
 import com.example.latte_core.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 

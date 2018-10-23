@@ -1,9 +1,6 @@
 package com.example.latte_core.ui.launcher;
 
-import android.view.View;
-
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
-import com.bigkoo.convenientbanner.holder.Holder;
 
 public class LauncherHolderCreator implements CBViewHolderCreator<LauncherHolder> {
 

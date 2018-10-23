@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
 import com.example.latte_core.app.AccountManager;
 import com.example.latte_core.app.IUserChecker;
-import com.example.latte_core.app.Latte;
 import com.example.latte_core.delegates.LatteDelegate;
 import com.example.latte_core.ui.launcher.ILauncherListener;
 import com.example.latte_core.ui.launcher.OnLauncherFinishTag;
@@ -52,6 +50,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListerer{
         final BaseTimerTask task = new BaseTimerTask(this);
         //0表示延迟的时间，1000表示间隔的时间
         mTimer.schedule(task,0,1000);
+      //  mTvTimer.setText("aaa");
     }
 
     @Override

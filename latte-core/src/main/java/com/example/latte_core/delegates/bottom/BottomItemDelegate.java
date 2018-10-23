@@ -4,40 +4,24 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.latte_core.R;
+import com.example.latte_core.app.Latte;
 import com.example.latte_core.delegates.LatteDelegate;
 
-public abstract class BottomItemDelegate extends LatteDelegate implements View.OnKeyListener{
+public abstract class BottomItemDelegate extends LatteDelegate {
 
-    private long mExitTime = 0;
-    private static final  int EXIT_TINE = 2000;
+    // 再点一次退出程序时间设置
+    private static final long WAIT_TIME = 2000L;
+    private long TOUCH_TIME = 0;
 
-    //每次   rootView.requestFocus();        ？？？？
     @Override
-    public void onResume() {
-        super.onResume();
-        final View rootView = getView();
-        if (rootView != null){
-            rootView.setFocusableInTouchMode(true);
-            rootView.requestFocus();
-            rootView.setOnKeyListener(this);
+    public boolean onBackPressedSupport() {
+        if (System.currentTimeMillis() - TOUCH_TIME < WAIT_TIME) {
+            _mActivity.finish();
+        } else {
+            TOUCH_TIME = System.currentTimeMillis();
+            Toast.makeText(_mActivity, "双击退出" + Latte.getApplicationContext().getString(R.string.app_name), Toast.LENGTH_SHORT).show();
         }
-    }
-
-    //双击back键退出
-    @Override
-    public boolean onKey(View v, int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
-            if ((System.currentTimeMillis()-mExitTime) > mExitTime){
-                Toast.makeText(getContext(),"双击退出" + getString(com.wang.avi.R.string.app_name),Toast.LENGTH_SHORT).show();
-                mExitTime = System.currentTimeMillis();
-            }else {
-                _mActivity.fileList();
-                if (mExitTime != 0){
-                    mExitTime = 0;
-                }
-            }
-            return true;
-        }
-        return false;
+        return true;
     }
 }

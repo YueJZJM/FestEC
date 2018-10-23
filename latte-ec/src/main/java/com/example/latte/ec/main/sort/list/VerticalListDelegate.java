@@ -13,7 +13,6 @@ import com.example.latte.ec.main.sort.SortDelegate;
 import com.example.latte_core.delegates.LatteDelegate;
 import com.example.latte_core.net.RestClient;
 import com.example.latte_core.net.callback.ISuccess;
-import com.example.latte_core.ui.recycler.MultipleFields;
 import com.example.latte_core.ui.recycler.MultipleItemEntity;
 
 import java.util.List;

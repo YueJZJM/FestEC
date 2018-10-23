@@ -16,7 +16,7 @@ public class MultipleItemEntityBuilder {
         return this;
     }
 
-    public final MultipleItemEntityBuilder setField(Object key,Object value){
+    public final MultipleItemEntityBuilder setField(Object key, Object value){
         FIELDS.put(key, value);
         return this;
     }

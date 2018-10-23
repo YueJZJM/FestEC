@@ -3,8 +3,6 @@ package com.example.latte.ec.main.sort.content;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.example.latte_core.ui.recycler.DataConverter;
-import com.example.latte_core.ui.recycler.MultipleItemEntity;
 
 import java.util.ArrayList;
 import java.util.List;

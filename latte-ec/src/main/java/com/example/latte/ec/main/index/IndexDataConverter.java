@@ -10,7 +10,7 @@ import com.example.latte_core.ui.recycler.MultipleItemEntity;
 
 import java.util.ArrayList;
 
-public class IndexDataConverter extends DataConverter{
+public class IndexDataConverter extends DataConverter {
 
     @Override
     public ArrayList<MultipleItemEntity> convert() {

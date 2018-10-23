@@ -2,6 +2,7 @@ package com.example.latte.ec.main.discover;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.example.latte.ec.R;
@@ -35,4 +36,5 @@ public class DiscoverDelegate extends BottomItemDelegate {
     public FragmentAnimator onCreateFragmentAnimator() {
         return new DefaultHorizontalAnimator();
     }
+
 }
