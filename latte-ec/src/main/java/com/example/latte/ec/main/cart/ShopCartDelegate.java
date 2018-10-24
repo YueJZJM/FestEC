@@ -58,6 +58,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess,ICa
             mIconSelectAll.setTag(0);
             mAdapter.setIsSelectedAll(false);
             mAdapter.notifyItemRangeChanged(0,mAdapter.getItemCount());
+            //mAdapter.notifyDataSetChanged();
         }
     }
 
