@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
+import com.blankj.utilcode.util.Utils;
 import com.example.latte_core.delegates.web.event.Event;
 import com.example.latte_core.delegates.web.event.EventManager;
 import com.joanzapata.iconify.IconFontDescriptor;
@@ -40,10 +41,12 @@ public class Configurator {
     }
 
     public final void configure(){
+
         initIcons();
        // Logger.addLogAdapter(new AndroidLogAdapter());
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY.name(),true);
         LATTE_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
+        Utils.init(Latte.getApplicationContext());
     }
 
     public final Configurator withApiHost(String host){

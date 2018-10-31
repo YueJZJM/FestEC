@@ -20,6 +20,7 @@ public class UserProfileClickListener extends SimpleClickListener {
 
     public UserProfileClickListener(LatteDelegate delegate) {
         DELEGATE = delegate;
+     //   DELEGATE.startCameraWithCheck();
     }
 
 
@@ -30,6 +31,7 @@ public class UserProfileClickListener extends SimpleClickListener {
         switch (id) {
             case 1:
                 //开始照相机
+                DELEGATE.startCameraWithCheck();
                 break;
             case 2:
                 final LatteDelegate nameDelegate = bean.getDelegate();
