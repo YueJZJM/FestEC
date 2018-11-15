@@ -11,6 +11,9 @@ import android.widget.Toast;
 import com.example.latte_core.ui.camera.CameraImageBean;
 import com.example.latte_core.ui.camera.LatteCamera;
 import com.example.latte_core.ui.camera.RequestCodes;
+import com.example.latte_core.util.callback.CallbackManager;
+import com.example.latte_core.util.callback.CallbackType;
+import com.example.latte_core.util.callback.IGlobalCallback;
 import com.yalantis.ucrop.UCrop;
 
 import permissions.dispatcher.NeedsPermission;
@@ -115,16 +118,16 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
                 case RequestCodes.CROP_PHOTO:
                     final Uri cropUri = UCrop.getOutput(data);
                     //拿到剪裁后的数据进行处理
-//                    @SuppressWarnings("unchecked") final IGlobalCallback<Uri> callback = CallbackManager
-//                            .getInstance()
-//                            .getCallback(CallbackType.ON_CROP);
-//                    if (callback != null) {
-//                        callback.executeCallback(cropUri);
-//                    }
+                    @SuppressWarnings("unchecked") final IGlobalCallback<Uri> callback = CallbackManager
+                            .getInstance()
+                            .getCallback(CallbackType.ON_CROP);
+                    if (callback != null) {
+                        callback.executeCallback(cropUri);
+                    }
                     break;
-//                case RequestCodes.CROP_ERROR:
-//                    Toast.makeText(getContext(), "剪裁出错", Toast.LENGTH_SHORT).show();
-//                    break;
+                case RequestCodes.CROP_ERROR:
+                    Toast.makeText(getContext(), "剪裁出错", Toast.LENGTH_SHORT).show();
+                    break;
                 default:
                     break;
             }

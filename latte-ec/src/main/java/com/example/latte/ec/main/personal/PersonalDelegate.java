@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
+import com.example.latte.ec.main.personal.address.AddressDelegate;
 import com.example.latte.ec.main.personal.list.ListAdapter;
 import com.example.latte.ec.main.personal.list.ListBean;
 import com.example.latte.ec.main.personal.list.ListItemType;
@@ -64,6 +65,7 @@ public class PersonalDelegate extends BottomItemDelegate {
         ListBean push = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(1)
+                .setDelegate(new AddressDelegate())
                 .setText("收货地址")
                 .setValue("add")
                 .build();
@@ -84,5 +86,6 @@ public class PersonalDelegate extends BottomItemDelegate {
         mRecyclerViewSetting.setLayoutManager(manager);
         ListAdapter adapter = new ListAdapter(data);
         mRecyclerViewSetting.setAdapter(adapter);
+        mRecyclerViewSetting.addOnItemTouchListener(new PersonalClickListener(this));
     }
 }

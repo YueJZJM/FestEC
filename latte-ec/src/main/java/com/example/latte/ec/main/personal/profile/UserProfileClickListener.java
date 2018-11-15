@@ -1,16 +1,23 @@
 package com.example.latte.ec.main.personal.profile;
 
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.example.latte.ec.R;
 import com.example.latte.ec.main.personal.list.ListBean;
 import com.example.latte_core.delegates.LatteDelegate;
 import com.example.latte_core.ui.date.DateDialogUtil;
+import com.example.latte_core.util.callback.CallbackManager;
+import com.example.latte_core.util.callback.CallbackType;
+import com.example.latte_core.util.callback.IGlobalCallback;
 
 public class UserProfileClickListener extends SimpleClickListener {
 
@@ -31,6 +38,18 @@ public class UserProfileClickListener extends SimpleClickListener {
         switch (id) {
             case 1:
                 //开始照相机
+                CallbackManager.getInstance().addCallback(CallbackType.ON_CROP, new IGlobalCallback<Uri>() {
+                    @Override
+                    public void executeCallback(Uri arge) {
+                        Log.d("ON_CROP", arge.toString());
+                        final ImageView avatar = view.findViewById(R.id.img_arrow_avatar);
+                        Glide.with(DELEGATE)
+                                .load(arge)
+                                .into(avatar);
+
+                        //上传至服务器
+                    }
+                });
                 DELEGATE.startCameraWithCheck();
                 break;
             case 2:

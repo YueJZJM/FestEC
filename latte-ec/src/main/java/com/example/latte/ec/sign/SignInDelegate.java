@@ -30,7 +30,7 @@ public class SignInDelegate extends LatteDelegate {
     void onClickSignIn(){
         if (chechForm()){
             RestClient.builder()
-                    .url("http://oxjde2kpq.bkt.clouddn.com/user_profile.json")
+                    .url("http://mock.fulingjie.com/mock/data/user_profile.json")
                     .params("email",mEmail.getText().toString())
                     .params("password",mPassword.getText().toString())
                     .success(new ISuccess() {
