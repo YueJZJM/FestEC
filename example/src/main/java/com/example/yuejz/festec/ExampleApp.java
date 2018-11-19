@@ -11,6 +11,8 @@ import com.example.latte_core.net.rx.AddCookieInterceptor;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
+import cn.jpush.android.api.JPushInterface;
+
 public class ExampleApp extends Application {
 
     @Override
@@ -34,6 +36,10 @@ public class ExampleApp extends Application {
 
         DataBaseManager.getInstance().init(this);
         initStetho();
+
+        //极光推送
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 
     private void initStetho(){
