@@ -14,6 +14,7 @@ import com.example.latte.ec.main.personal.list.ListBean;
 import com.example.latte.ec.main.personal.list.ListItemType;
 import com.example.latte.ec.main.personal.order.OrderListDelegate;
 import com.example.latte.ec.main.personal.profile.UserPrfileDelegate;
+import com.example.latte.ec.main.personal.settings.SettingDelegate;
 import com.example.latte_core.delegates.bottom.BottomItemDelegate;
 
 import java.util.ArrayList;
@@ -73,6 +74,7 @@ public class PersonalDelegate extends BottomItemDelegate {
         ListBean system = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(2)
+                .setDelegate(new SettingDelegate())
                 .setText("系统设置")
                 .setValue("add")
                 .build();

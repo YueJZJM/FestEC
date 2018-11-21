@@ -14,16 +14,16 @@ public class ListBean implements MultiItemEntity {
     private String mValue = null;
     private int mId = 0 ;
     private LatteDelegate mDelegate = null;
-    private CompoundButton.OnClickListener mOnClickListener = null;
+    private CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener = null;
 
-    public ListBean(int mItenType, String mImageUrl, String mText, String mValue, int mId, LatteDelegate mDelegate, CompoundButton.OnClickListener mOnClickListener) {
+    public ListBean(int mItenType, String mImageUrl, String mText, String mValue, int mId, LatteDelegate mDelegate, CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener) {
         this.mItenType = mItenType;
         this.mImageUrl = mImageUrl;
         this.mText = mText;
         this.mValue = mValue;
         this.mId = mId;
         this.mDelegate = mDelegate;
-        this.mOnClickListener = mOnClickListener;
+        this.mOnCheckedChangeListener = mOnCheckedChangeListener;
     }
 
 
@@ -76,12 +76,12 @@ public class ListBean implements MultiItemEntity {
         this.mDelegate = mDelegate;
     }
 
-    public CompoundButton.OnClickListener getOnClickListener() {
-        return mOnClickListener;
+    public CompoundButton.OnCheckedChangeListener getOnClickListener() {
+        return mOnCheckedChangeListener;
     }
 
-    public void setOnClickListener(CompoundButton.OnClickListener mOnClickListener) {
-        this.mOnClickListener = mOnClickListener;
+    public void setOnClickListener(CompoundButton.OnCheckedChangeListener mOnClickListener) {
+        this.mOnCheckedChangeListener = mOnClickListener;
     }
 
     @Override
@@ -95,7 +95,7 @@ public class ListBean implements MultiItemEntity {
         private String imageUrl = null;
         private String text = null;
         private String value = null;
-        private CompoundButton.OnClickListener onClickListener = null;
+        private CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener = null;
         private LatteDelegate delegate = null;
 
         public Builder setId(int id) {
@@ -123,8 +123,8 @@ public class ListBean implements MultiItemEntity {
             return this;
         }
 
-        public Builder setOnClickListener(CompoundButton.OnClickListener onClickListener) {
-            this.onClickListener = onClickListener;
+        public Builder setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener onClickListener) {
+            this.mOnCheckedChangeListener = onClickListener;
             return this;
         }
 
@@ -134,7 +134,7 @@ public class ListBean implements MultiItemEntity {
         }
 
         public ListBean build() {
-            return new ListBean(itemType,imageUrl,text,value,id,delegate,onClickListener);
+            return new ListBean(itemType,imageUrl,text,value,id,delegate,mOnCheckedChangeListener);
         }
     }
 }

@@ -13,7 +13,6 @@ import com.example.latte_core.delegates.LatteDelegate;
 import com.example.latte_core.net.RestClient;
 import com.example.latte_core.net.callback.ISuccess;
 import com.example.latte_core.ui.recycler.MultipleItemEntity;
-import com.example.latte_core.ui.recycler.MultipleItemEntityBuilder;
 
 import java.util.List;
 
@@ -52,7 +51,7 @@ public class OrderListDelegate extends LatteDelegate {
                                 .setJsonData(response).convert();
                         final OrderListAdapter adapter = new OrderListAdapter(data);
                         mRecyclerView.setAdapter(adapter);
-
+                        mRecyclerView.addOnItemTouchListener(new OrderListClickListener(OrderListDelegate.this));
                     }
                 })
                 .build()

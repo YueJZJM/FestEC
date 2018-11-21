@@ -1,5 +1,6 @@
 package com.example.latte.ec.main.personal.list;
 
+import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -22,6 +23,7 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean,BaseViewHold
         super(data);
         addItemType(ListItemType.ITEM_NORMAL,R.layout.arrow_item_layout);
         addItemType(ListItemType.ITEM_AVATAR,R.layout.arrow_item_avater);
+        addItemType(ListItemType.ITEM_SWITCH,R.layout.arrow_switch_layout);
     }
 
     @Override
@@ -37,6 +39,13 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean,BaseViewHold
                         .load(item.getImageUrl())
                         .apply(OPTIONS)
                         .into((ImageView) helper.getView(R.id.img_arrow_avatar));
+                break;
+
+            case ListItemType.ITEM_SWITCH:
+                helper.setText(R.id.tv_arrow_switch_text, item.getText());
+                final SwitchCompat switchCompat = helper.getView(R.id.list_item_switch);
+                switchCompat.setChecked(true);
+                switchCompat.setOnCheckedChangeListener(item.getOnClickListener());
                 break;
             default:
                 break;
