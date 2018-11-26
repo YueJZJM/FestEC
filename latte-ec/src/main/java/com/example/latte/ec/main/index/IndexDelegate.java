@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
 import com.example.latte.ec.main.EcBottomDelegate;
+import com.example.latte.ec.main.index.search.SearchDelegate;
 import com.example.latte_core.delegates.bottom.BottomItemDelegate;
 import com.example.latte_core.ui.recycler.BaseDecoration;
 import com.example.latte_core.ui.refresh.RefreshHandler;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class IndexDelegate extends BottomItemDelegate {
+public class IndexDelegate extends BottomItemDelegate implements View.OnFocusChangeListener {
 
     @BindView(R2.id.rv_index)
     RecyclerView mRecyclerView = null;
@@ -58,6 +59,7 @@ public class IndexDelegate extends BottomItemDelegate {
                         Toast.makeText(getContext(),"得到的二维码是：" + args, Toast.LENGTH_LONG).show();
                     }
                 });
+        sSearchView.setOnFocusChangeListener(this);
     }
 
     private void initRefreshLayout(){
@@ -92,5 +94,17 @@ public class IndexDelegate extends BottomItemDelegate {
         return R.layout.delegate_index;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+       // sSearchView.clearFocus();
+    }
 
+    @Override
+    public void onFocusChange(View view, boolean b) {
+        if (b) {
+            getParentDelegate().getSupportDelegate().start(new SearchDelegate());
+            sSearchView.clearFocus();
+        }
+    }
 }
