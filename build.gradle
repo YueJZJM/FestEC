@@ -12,7 +12,8 @@ buildscript {
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
         //数据库
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
-
+        // 注册MobSDK
+        classpath "com.mob.sdk:MobSDK:2018.0319.1724"
     }
 }
 

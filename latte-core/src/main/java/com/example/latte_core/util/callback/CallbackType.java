@@ -3,5 +3,6 @@ package com.example.latte_core.util.callback;
 public enum CallbackType {
     ON_CROP,
     TAG_OPEN_PUSH,
-    TAG_STOP_PUST
+    TAG_STOP_PUST,
+    ON_SCAN
 }

@@ -12,6 +12,7 @@ import com.example.latte_core.net.rx.AddCookieInterceptor;
 import com.example.latte_core.util.callback.CallbackManager;
 import com.example.latte_core.util.callback.CallbackType;
 import com.example.latte_core.util.callback.IGlobalCallback;
+import com.example.yuejz.festec.event.ShareEvent;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
@@ -25,11 +26,11 @@ public class ExampleApp extends Application {
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
-                //   .withApiHost("http://oxjde2kpq.bkt.clouddn.com/")
-                .withApiHost("http://mock.fulingjie.com/mock/data/")
-                .withInterceptor(new DebugInterceptor("index", R.raw.test))
+                 .withApiHost("http://oxjde2kpq.bkt.clouddn.com/")
+               // .withApiHost("http://mock.fulingjie.com/mock/data/")
+              //  .withInterceptor(new DebugInterceptor("index", R.raw.test))
                 .withJavascriptInterface("latte")
-                .withWebEvent("test", new TestEvent())
+                .withWebEvent("share", new ShareEvent())
                 // .withWebEvent("action", new TestEvent())
                 //      .withWeChatAppId("")
                 //   .withWeChatAppSecret("")

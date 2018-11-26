@@ -3,6 +3,7 @@ package com.example.latte_core.ui.refresh;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -54,8 +55,9 @@ public class RefreshHandler implements
         Log.d("url",url);
         BEAN.setDelayout(1000);
         RestClient.builder()
-               // .url("http://mock.fulingjie.com/mock/data/index_data.json/")
-                .url("http://mock.fulingjie.com/mock/api/")
+               .url("http://mock.fulingjie.com/mock/data/index_data.json")
+               // .url("http://mock.fulingjie.com/mock/api/")
+             //   .url("http://oxjde2kpq.bkt.clouddn.com/index_data.json")
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
@@ -67,11 +69,42 @@ public class RefreshHandler implements
                         mAdapter.setOnLoadMoreListener(RefreshHandler.this,RECYCLERVIEW);
                         RECYCLERVIEW.setAdapter(mAdapter);
                         BEAN.addIndex();
-                       // Toast.makeText(Latte.getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                    //    Toast.makeText(Latte.getApplicationContext(),response,Toast.LENGTH_SHORT).show();
                     }
                 })
                 .build()
                 .get();
+    }
+
+    private void paging(String url) {
+        final int pageSize = BEAN.getPageSize();
+        final int currentCount =BEAN.getCurrentCount();
+        final int total = BEAN.getTotal();
+        final int index = BEAN.getPageIndex();
+
+        if (mAdapter.getData().size() < pageSize || currentCount >= total) {
+            mAdapter.loadMoreEnd();
+        } else {
+            Latte.getHandler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    RestClient.builder()
+                            .url(url + index)
+                            .success(new ISuccess() {
+                                @Override
+                                public void onSuccess(String response) {
+                                    mAdapter.addData(CONVERTER.setJsonData(response).convert());
+                                    ///累加数量
+                                    BEAN.setCurrentCount(mAdapter.getData().size());
+                                    mAdapter.loadMoreComplete();
+                                    BEAN.addIndex();
+                                }
+                            })
+                            .build()
+                            .get();
+                }
+            },1000);
+        }
     }
 
     @Override
@@ -82,6 +115,6 @@ public class RefreshHandler implements
 
     @Override
     public void onLoadMoreRequested() {
-
+        //paging("");
     }
 }

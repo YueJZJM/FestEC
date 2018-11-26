@@ -8,6 +8,7 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -17,11 +18,15 @@ import com.example.latte.ec.main.EcBottomDelegate;
 import com.example.latte_core.delegates.bottom.BottomItemDelegate;
 import com.example.latte_core.ui.recycler.BaseDecoration;
 import com.example.latte_core.ui.refresh.RefreshHandler;
+import com.example.latte_core.util.callback.CallbackManager;
+import com.example.latte_core.util.callback.CallbackType;
+import com.example.latte_core.util.callback.IGlobalCallback;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class IndexDelegate extends BottomItemDelegate {
 
@@ -37,9 +42,22 @@ public class IndexDelegate extends BottomItemDelegate {
     AppCompatEditText sSearchView = null;
     private RefreshHandler mRefreshHandler = null;
 
+    @OnClick(R2.id.icon_index_scan)
+    void onClickScanQrCode() {
+        startScanWithCheck(this.getParentDelegate());
+    }
+
+
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mRefreshHandler =  RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
+                    @Override
+                    public void executeCallback(String args) {
+                        Toast.makeText(getContext(),"得到的二维码是：" + args, Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     private void initRefreshLayout(){
@@ -65,6 +83,7 @@ public class IndexDelegate extends BottomItemDelegate {
         super.onLazyInitView(savedInstanceState);
         initRefreshLayout();
         initRecyclerView();
+        Log.d("onLazyInitView", "onLazyInitView");
         mRefreshHandler.firstPage("index_data.json");
     }
 
